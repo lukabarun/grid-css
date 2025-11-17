@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/* --------------------------------------------------
+   General basic settings                              
+---------------------------------------------------- */
+html {
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+body {
+  color: #1d2731;            /* Ivory Black */
+  background-color: #efefef; /* Neutral */
+  font-family: Georgia;
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+}
+
+.wrapper {
+  background-color: #ff3b3f; /* Watermelon */
+  min-height: 100vh;
+  display: grid;
+}
+
+/* --------------------------------------------------
+   Base design (mobile first = default styles)
+   MOBILE: max-width: 680px
+   → All stacked in one column
+---------------------------------------------------- */
+.wrapper {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+      "header"
+      "nav"
+      "content"
+      "aside"
+      "footer";
+}
+
+/* Header */
+.header {
+  grid-area: header;
+  text-align: center;
+  padding: 1em;
+  background-color: #07889b; /* Teal */
+  color: #efefef;
+  border-bottom: 1px solid #efefef;
+}
+
+/* Navigation */
+.nav-ul {
+  grid-area: nav;
+  background-color: #ff383f; /* Watermelon */
+  margin: 0;
+}
+.nav-li {
+  list-style: none;
+  margin-left: 0;
+  border-bottom: 1px solid #efefef;
+}
+.nav-li-a {
+  padding: 0.6em 2rem;
+  display: block;
+}
+.nav-ul a:link {
+  text-decoration: none;
+}
+.nav-ul a:link, .nav-ul a:visited {
+  color: #fff;
+}
+.nav-ul a:hover, .nav-ul a:focus, .nav-ul a:active {
+  background-color: #000;
+  color: #efefef;
+}
+.nav-active {
+  color: #000;
+  background-color: #fff;
+}
+
+/* Content */
+.container {
+  grid-area: content;
+  background-color: #fff;
+  padding: 2em 2rem;
+}
+
+/* Aside */
+.aside {
+  grid-area: aside;
+  border-top: 1px solid #a9a9a9;
+  padding: 1.5em 2rem;
+  background: #fff;
+}
+
+/* Footer */
+.footer {
+  grid-area: footer;
+  background-color: #a9a9a9;
+  color: #efefef;
+  padding: 1em;
+  text-align: center;
+  border-top: 1px solid #efefef;
+}
+
+/* --------------------------------------------------
+   TABLET: 681px – 1024px
+   Layout: Header on top, nav on the left, content & aside side-by-side
+---------------------------------------------------- */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .wrapper {
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+      "header header"
+      "nav    content"
+      "nav    aside"
+      "footer footer";
+  }
+
+  .nav-ul {
+    height: 100%;
+  }
+}
+
+/* --------------------------------------------------
+   LAPTOP / DESKTOP: >= 1025px
+   Layout: Proper 3-column grid
+   Left: nav
+   Middle: content
+   Right: aside
+---------------------------------------------------- */
+@media (min-width: 1025px) {
+  .wrapper {
+    grid-template-columns: 250px 1fr 300px;
+    grid-template-areas:
+      "header header header"
+      "nav content aside"
+      "footer footer footer";
+  }
+
+  .aside {
+    border-top: none;
+    border-left: 1px solid #a9a9a9;
+  }
+}
